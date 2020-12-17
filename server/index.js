@@ -7,6 +7,7 @@ app.use('/items/:itemId', express.static(__dirname + '/../react-client/dist'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+// ITEM IMAGES SERVICE
 
 app.get('/images', async (req, res)=>{
   let bundle = await axios.get('http://localhost:3006/items/1/bundle.js');
@@ -21,9 +22,18 @@ app.get('/item/:itemId/images', async (req, res)=>{
 
 app.get('/item/images', async (req, res)=>{
   let image_urls = await axios.get('http://localhost:3006/item/images');
-  res.send(image_urls);
+  res.send(image_urls.data.rows);
 })
 
+app.get('/item/images', async (req, res)=>{
+  let image_urls = await axios.get('http://localhost:3006/item/images');
+  res.send(image_urls.data.rows);
+})
+
+app.get('/item/images/distinct', async (req, res) => {
+  let image_urls = await axios.get('http://localhost:3006/item/images/distinct');
+  res.send(image_urls.data.rows);
+});
 
 // app.get('/images', (req, res)=>{
 //   console.log('Gets to images endpoint');
