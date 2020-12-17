@@ -19,6 +19,12 @@ app.get('/item/:itemId/images', async (req, res)=>{
   res.send(image_urls.data);
 });
 
+app.get('/item/images', async (req, res)=>{
+  let image_urls = await axios.get('http://localhost:3006/item/images');
+  res.send(image_urls);
+})
+
+
 // app.get('/images', (req, res)=>{
 //   console.log('Gets to images endpoint');
 //   axios.get('http://localhost:3006/items/1/bundle.js')
