@@ -60,6 +60,32 @@ app.get('/item/images/distinct', async (req, res) => {
 //   });
 // });
 
+//SELLER SERVICE
+
+// app.get('/seller', async (req, res)=>{
+//   let bundle = await axios.get('http://localhost:3005/items/1/bundle.js');
+//   res.send(bundle.data);
+// });
+
+// app.get('/items/:itemId/seller', async (req, res) => {
+//   let item_id = req.params.itemId;
+//   let seller_data = await axios.get(`http://localhost:3005/items/${item_id}/seller`);
+//   res.send(seller_data.data)
+// })
+
+// //SHOPPING SERVICE
+
+// app.get('/shopping', async (req, res)=>{
+//   let bundle = await axios.get('http://localhost:3004/items/1/bundle.js');
+//   res.send(bundle.data);
+// });
+
+// app.get('/shopping/items', async (req, res) => {
+//   let shopping_data = await axios.get('http://localhost:3004/shopping/items');
+//   res.send(shopping_data.data);
+// });
+
+
 
 
 
