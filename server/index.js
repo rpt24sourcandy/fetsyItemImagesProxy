@@ -2,12 +2,15 @@ const port = 3000;
 const express = require('express');
 const app = express();
 const axios = require('axios');
+const path = require('path');
 
-app.use('/items/:itemId', express.static(__dirname + '/../react-client/dist'));
+app.use('/items/:itemId', express.static(__dirname + '/../react/dist'));
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// ITEM IMAGES SERVICE
+
+// ITEM IMAGES SERVICE ENDPOINTS
 
 app.get('/images', async (req, res)=>{
   let bundle = await axios.get('http://localhost:3006/items/1/bundle.js');
@@ -25,14 +28,9 @@ app.get('/item/images', async (req, res)=>{
   res.send(image_urls.data.rows);
 })
 
-app.get('/item/images', async (req, res)=>{
-  let image_urls = await axios.get('http://localhost:3006/item/images');
-  res.send(image_urls.data.rows);
-})
-
 app.get('/item/images/distinct', async (req, res) => {
   let image_urls = await axios.get('http://localhost:3006/item/images/distinct');
-  res.send(image_urls.data.rows);
+  res.send(image_urls.data);
 });
 
 // app.get('/images', (req, res)=>{
@@ -60,36 +58,47 @@ app.get('/item/images/distinct', async (req, res) => {
 //   });
 // });
 
-//SELLER SERVICE
+//SELLER SERVICE ENDPOINTS
 
-// app.get('/seller', async (req, res)=>{
-//   let bundle = await axios.get('http://localhost:3005/items/1/bundle.js');
-//   res.send(bundle.data);
-// });
+app.get('/seller', async (req, res)=>{
+  let bundle = await axios.get('http://localhost:3005/items/1/bundle.js');
+  res.send(bundle.data);
+});
 
-// app.get('/items/:itemId/seller', async (req, res) => {
-//   let item_id = req.params.itemId;
-//   let seller_data = await axios.get(`http://localhost:3005/items/${item_id}/seller`);
-//   res.send(seller_data.data)
+app.get('/items/:itemId/seller', async (req, res) => {
+  let item_id = req.params.itemId;
+  let seller_data = await axios.get(`http://localhost:3005/items/${item_id}/seller`);
+  res.send(seller_data.data)
+})
+
+//SHOPPING SERVICE ENDPOINTS
+
+app.get('/shopping', async (req, res)=>{
+  let bundle = await axios.get('http://localhost:3004/items/1/bundle.js');
+  res.send(bundle.data);
+});
+
+app.get('/shopping/items', async (req, res) => {
+  let shopping_data = await axios.get('http://localhost:3004/shopping/items');
+  res.send(shopping_data.data);
+});
+
+app.get('/shopping/items/:itemId', async (req, res) => {
+  let item_id = req.params.itemId;
+  let shopping_data = await axios.get(`http://localhost:3004/shopping/items/${item_id}`);
+  res.send(shopping_data.data);
+});
+
+//REVIEWS SERVICE ENDPOUNT
+
+// app.get('/reviews', async (req, res)=>{
+
+
 // })
-
-// //SHOPPING SERVICE
-
-// app.get('/shopping', async (req, res)=>{
-//   let bundle = await axios.get('http://localhost:3004/items/1/bundle.js');
-//   res.send(bundle.data);
-// });
-
-// app.get('/shopping/items', async (req, res) => {
-//   let shopping_data = await axios.get('http://localhost:3004/shopping/items');
-//   res.send(shopping_data.data);
-// });
-
-
-
 
 
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
+
