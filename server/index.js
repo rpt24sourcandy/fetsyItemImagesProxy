@@ -91,14 +91,19 @@ app.get('/shopping/items/:itemId', async (req, res) => {
 
 //REVIEWS SERVICE ENDPOUNT
 
-// app.get('/reviews', async (req, res)=>{
+app.get('/reviews', async (req, res)=>{
+  let bundle = await axios.get('http://localhost:3002/items/1/bundle.js');
+  res.send(bundle.data);
+});
 
-
-// })
-
+app.get('/api/items/:itemId/reviews', async (req, res) => {
+  let item_id = req.params.itemId;
+  let reviews_data = await axios.get(`http://localhost:3002/api/items/${item_id}/reviews`);
+  res.send(reviews_data.data);
+});
 
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
-})
+});
 
