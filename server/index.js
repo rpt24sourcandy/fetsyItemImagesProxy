@@ -5,10 +5,8 @@ const axios = require('axios');
 const path = require('path');
 
 app.use('/items/:itemId', express.static(__dirname + '/../react/dist'));
-
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-
 
 // ITEM IMAGES SERVICE ENDPOINTS
 
@@ -32,31 +30,6 @@ app.get('/item/images/distinct', async (req, res) => {
   let image_urls = await axios.get('http://localhost:3006/item/images/distinct');
   res.send(image_urls.data);
 });
-
-// app.get('/images', (req, res)=>{
-//   console.log('Gets to images endpoint');
-//   axios.get('http://localhost:3006/items/1/bundle.js')
-//   .then((data)=>{
-//     res.send(data.data)
-//   })
-//   .catch((err)=>{
-//     console.log('ERROR');
-//     console.log(err);
-//   })
-//   console.log('Gets to images endpoint END');
-// });
-
-// app.get('/item/:itemId/images', (req, res)=>{
-//   console.log('REQ ', req.params.itemId);
-//   let item_id = req.params.itemId;
-//   axios.get(`http://localhost:3006/item/${item_id}/images`)
-//   .then((response)=>{
-//     res.send(response.data);
-//   })
-//   .catch((err)=>{
-//     console.log('ERROR', err);
-//   });
-// });
 
 //SELLER SERVICE ENDPOINTS
 
@@ -102,8 +75,33 @@ app.get('/api/items/:itemId/reviews', async (req, res) => {
   res.send(reviews_data.data);
 });
 
-
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 });
 
+//NOTES FOR REFERENCE: ORIGINAL IMAGE ENDPOINTS WITH PROMISES
+
+// app.get('/images', (req, res)=>{
+//   console.log('Gets to images endpoint');
+//   axios.get('http://localhost:3006/items/1/bundle.js')
+//   .then((data)=>{
+//     res.send(data.data)
+//   })
+//   .catch((err)=>{
+//     console.log('ERROR');
+//     console.log(err);
+//   })
+//   console.log('Gets to images endpoint END');
+// });
+
+// app.get('/item/:itemId/images', (req, res)=>{
+//   console.log('REQ ', req.params.itemId);
+//   let item_id = req.params.itemId;
+//   axios.get(`http://localhost:3006/item/${item_id}/images`)
+//   .then((response)=>{
+//     res.send(response.data);
+//   })
+//   .catch((err)=>{
+//     console.log('ERROR', err);
+//   });
+// });
