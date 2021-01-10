@@ -8,26 +8,30 @@ app.use('/items/:itemId', express.static(__dirname + '/../react/dist'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// ITEM IMAGES SERVICE ENDPOINTS
+// ITEM IMAGES SERVICE ENDPOINTS http://13.52.213.118:3006/
 
 app.get('/images', async (req, res)=>{
-  let bundle = await axios.get('http://localhost:3006/items/1/bundle.js');
+  //let bundle = await axios.get('http://localhost:3006/items/1/bundle.js');
+  let bundle = await axios.get('http://13.52.213.118:3006/items/1/bundle.js');
   res.send(bundle.data);
 });
 
 app.get('/item/:itemId/images', async (req, res)=>{
   let item_id = req.params.itemId;
-  let image_urls = await axios.get(`http://localhost:3006/item/${item_id}/images`);
+ // let image_urls = await axios.get(`http://localhost:3006/item/${item_id}/images`);
+  let image_urls = await axios.get(`http://13.52.213.118:3006/item/${item_id}/images`);
   res.send(image_urls.data);
 });
 
 app.get('/item/images', async (req, res)=>{
-  let image_urls = await axios.get('http://localhost:3006/item/images');
+ // let image_urls = await axios.get('http://localhost:3006/item/images');
+  let image_urls = await axios.get('http://13.52.213.118:3006/item/images');
   res.send(image_urls.data.rows);
 })
 
 app.get('/item/images/distinct', async (req, res) => {
-  let image_urls = await axios.get('http://localhost:3006/item/images/distinct');
+  //let image_urls = await axios.get('http://localhost:3006/item/images/distinct');
+  let image_urls = await axios.get('http://13.52.213.118:3006/item/images/distinct');
   res.send(image_urls.data);
 });
 
