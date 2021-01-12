@@ -37,39 +37,39 @@ app.get('/item/images/distinct', async (req, res) => {
 
 //SELLER SERVICE ENDPOINTS
 
-// app.get('/seller', async (req, res)=>{
-//   //let bundle = await axios.get('http://localhost:3005/items/1/bundle.js');
-//   let bundle = await axios.get('http://3.21.248.149:3005/items/1/bundle.js');
-//   res.send(bundle.data);
-// });
+app.get('/seller', async (req, res)=>{
+  //let bundle = await axios.get('http://localhost:3005/items/1/bundle.js');
+  let bundle = await axios.get('http://3.21.248.149:3005/items/1/bundle.js');
+  res.send(bundle.data);
+});
 
-// app.get('/items/:itemId/seller', async (req, res) => {
-//   let item_id = req.params.itemId;
-//   //let seller_data = await axios.get(`http://localhost:3005/items/${item_id}/seller`);
-//   let seller_data = await axios.get(`http://3.21.248.149:3005/items/${item_id}/seller`);
-//   res.send(seller_data.data)
-// })
+app.get('/items/:itemId/seller', async (req, res) => {
+  let item_id = req.params.itemId;
+  //let seller_data = await axios.get(`http://localhost:3005/items/${item_id}/seller`);
+  let seller_data = await axios.get(`http://3.21.248.149:3005/items/${item_id}/seller`);
+  res.send(seller_data.data)
+})
 
 // //SHOPPING SERVICE ENDPOINTS
 
-// app.get('/shopping', async (req, res)=>{
-//   //let bundle = await axios.get('http://localhost:3004/items/1/bundle.js');
-//   let bundle = await axios.get('http://18.222.223.190:3004/items/1/bundle.js');
-//   res.send(bundle.data);
-// });
+app.get('/shopping', async (req, res)=>{
+  //let bundle = await axios.get('http://localhost:3004/items/1/bundle.js');
+  let bundle = await axios.get('http://18.222.223.190:3004/items/1/bundle.js');
+  res.send(bundle.data);
+});
 
-// app.get('/shopping/items', async (req, res) => {
-//   //let shopping_data = await axios.get('http://localhost:3004/shopping/items');
-//   let shopping_data = await axios.get('http://18.222.223.190:3004/shopping/items');
-//   res.send(shopping_data.data);
-// });
+app.get('/shopping/items', async (req, res) => {
+  //let shopping_data = await axios.get('http://localhost:3004/shopping/items');
+  let shopping_data = await axios.get('http://18.222.223.190:3004/shopping/items');
+  res.send(shopping_data.data);
+});
 
-// app.get('/shopping/items/:itemId', async (req, res) => {
-//   let item_id = req.params.itemId;
-//   //let shopping_data = await axios.get(`http://localhost:3004/shopping/items/${item_id}`);
-//   let shopping_data = await axios.get(`http://18.222.223.190:3004/shopping/items/${item_id}`);
-//   res.send(shopping_data.data);
-// });
+app.get('/shopping/items/:itemId', async (req, res) => {
+  let item_id = req.params.itemId;
+  //let shopping_data = await axios.get(`http://localhost:3004/shopping/items/${item_id}`);
+  let shopping_data = await axios.get(`http://18.222.223.190:3004/shopping/items/${item_id}`);
+  res.send(shopping_data.data);
+});
 
 //REVIEWS SERVICE ENDPOUNT
 
