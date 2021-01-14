@@ -29,11 +29,14 @@ app.get('/item/images', async (req, res)=>{
   res.send(image_urls.data.rows);
 })
 
-app.get('/item/images/distinct', async (req, res) => {
-  //let image_urls = await axios.get('http://localhost:3006/item/images/distinct');
-  let image_urls = await axios.get('http://13.52.213.118:3006/item/images/distinct');
-  res.send(image_urls.data);
-});
+// app.get('/item/images/distinct', async (req, res) => {
+//   //let image_urls = await axios.get('http://localhost:3006/item/images/distinct');
+//   let image_urls = await axios.get('http://13.52.213.118:3006/item/images/distinct')
+//   .catch((err)=>{
+//     console.log('Error: ', err);
+//   });
+//   res.send(image_urls.data);
+// });
 
 //SELLER SERVICE ENDPOINTS
 
@@ -43,12 +46,14 @@ app.get('/seller', async (req, res)=>{
   res.send(bundle.data);
 });
 
-app.get('/items/:itemId/seller', async (req, res) => {
-  let item_id = req.params.itemId;
+app.get('/items/:item_id/seller', async (req, res) => {
+  let item_id = req.params.item_id;
   //let seller_data = await axios.get(`http://localhost:3005/items/${item_id}/seller`);
   let seller_data = await axios.get(`http://3.21.248.149:3005/items/${item_id}/seller`);
   res.send(seller_data.data)
 })
+
+
 
 // //SHOPPING SERVICE ENDPOINTS
 
