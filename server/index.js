@@ -51,7 +51,7 @@ app.get('/items/:item_id/seller', async (req, res) => {
   //let seller_data = await axios.get(`http://localhost:3005/items/${item_id}/seller`);
   let seller_data = await axios.get(`http://3.21.248.149:3005/items/${item_id}/seller`)
   console.log('SHOPPING DATA ', seller_data.data);
-  res.send(seller_data.data);
+  res.send(seller_data);
 })
 
 
