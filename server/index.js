@@ -3,10 +3,12 @@ const express = require('express');
 const app = express();
 const axios = require('axios');
 const path = require('path');
+const compression = require ('compression')
 
 app.use('/items/:itemId', express.static(__dirname + '/../react/dist'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(compression());
 
 // ITEM IMAGES SERVICE ENDPOINTS http://13.52.213.118:3006/
 
@@ -29,15 +31,6 @@ app.get('/item/images', async (req, res)=>{
   res.send(image_urls.data);
 })
 
-// app.get('/item/images/distinct', async (req, res) => {
-//   //let image_urls = await axios.get('http://localhost:3006/item/images/distinct');
-//   let image_urls = await axios.get('http://13.52.213.118:3006/item/images/distinct')
-//   .catch((err)=>{
-//     console.log('Error: ', err);
-//   });
-//   res.send(image_urls.data);
-// });
-
 //SELLER SERVICE ENDPOINTS
 
 app.get('/seller', async (req, res)=>{
@@ -50,7 +43,6 @@ app.get('/items/:item_id/seller', async (req, res) => {
   let item_id = req.params.item_id;
   //let seller_data = await axios.get(`http://localhost:3005/items/${item_id}/seller`);
   let seller_data = await axios.get(`http://3.21.248.149:3005/items/${item_id}/seller`)
-  console.log('SHOPPING DATA ', seller_data.data);
   res.send(seller_data.data);
 })
 
